@@ -84,6 +84,16 @@ void receiveEvent(int howMany) {
     digitalWrite(ledPin, c);
   }
 }
-
 ```
+
+```python
+from smbus import SMBus
+
+addr = 0x8 # bus address
+bus = SMBus(1) # indicates /dev/ic2-1
+bus.write_byte(addr, 0x1) # switch it on
+input("Press return to exit")
+bus.write_byte(addr, 0x0) # switch it on
+```
+
 [link](https://create.arduino.cc/projecthub/aardweeno/controlling-an-arduino-from-a-pi3-using-i2c-59817b)
