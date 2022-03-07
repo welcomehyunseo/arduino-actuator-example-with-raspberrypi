@@ -1,6 +1,6 @@
 #include <Wire.h>
 
-boolean hold = false;
+byte action_code = 0;
 
 void setup()
 {
@@ -13,45 +13,41 @@ void setup()
 
 void loop()
 {
-  // put your main code here, to run repeatedly:
+  switch(action_code) 
+  {
+    case 1:
+      print_action_start(action_code);
+      delay(3000);  // some task
+      print_action_end(action_code);
+      action_code = 0;  // tell that action was ended
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+  }
 }
 
 void receiveEvent(int howMany)
 {
-  byte action_code = Wire.read();
-  switch (action_code)
-  {
-  case 0:
-    print_action_start(action_code);
-    hold = true;
-    delay(3000); // delay
-    print_action_end(action_code);
-    hold = false;
-    break;
-  case 1:
-    Serial.println("Action B");
-    break;
-  case 2:
-    Serial.println("Action C");
-    break;
-  }
+  action_code = Wire.read();
 }
 
 void sendEvent()
 {
-  Wire.write(hold);
+  Wire.write(action_code);
 }
 
 void print_action_start(int action_code)
 {
-  Serial.print("action which code is");
+  Serial.print("action ");
   Serial.print(action_code);
-  Serial.print("was starting!\n");
+  Serial.print(" is starting!\n");
 }
 
 void print_action_end(int action_code)
 {
-  Serial.print("action which code is");
+  Serial.print("action ");
   Serial.print(action_code);
-  Serial.print("was ended\n");
+  Serial.print(" is ended...\n");
 }
