@@ -10,7 +10,7 @@ def read_config():
 def main():
     print("Hello World!")
     config = read_config()
-    print(config["Machine"]["name"])
+    print(config["Machine"]["name"])  # flat-washers-thickness-measurement-system
 
 
 if __name__ == "__main__":
