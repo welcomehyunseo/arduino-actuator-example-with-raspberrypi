@@ -1,17 +1,18 @@
 from smbus import SMBus
 
 class Actuator:
-    addr = 0x1  # bus address, default is 0x1
-    bus = SMBus(1)  # indicates /dev/ic2-1
-
     def __init__(self, addr) -> None:
-        self.addr = addr
+        self.bus = SMBus(1)  # indicates /dev/ic2-1
+        self.addr = addr  # bus address
 
     def action_a(self) -> None:
-        bus.write_byte(addr, 0x0)  # send I2C_num is 0 to arduino actuator
+        self.bus.write_byte(self.addr, 0)  # send I2C_num is 0 to arduino actuator
+        print("action a is executed!")
 
     def action_b(self) -> None:
-        bus.write_byte(addr, 0x1)  # send I2C_num is 1 to arduino actuator
+        self.bus.write_byte(self.addr, 1)  # send I2C_num is 1 to arduino actuator
+        print("action b is executed!")
 
     def action_c(self) -> None:
-        bus.write_byte(addr, 0x2)  # send I2C_num is 2 to arduino actuator
+        self.bus.write_byte(self.addr, 2)  # send I2C_num is 2 to arduino actuator
+        print("action c is executed!")

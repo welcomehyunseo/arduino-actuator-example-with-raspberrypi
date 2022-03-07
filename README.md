@@ -87,6 +87,7 @@ void receiveEvent(int howMany) {
 ```
 
 ```python
+// raspberry pi
 from smbus import SMBus
 
 addr = 0x8 # bus address
