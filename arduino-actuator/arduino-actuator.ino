@@ -1,5 +1,4 @@
 #include <Wire.h>
-byte I2C_data;
 
 byte action_code = 0;
 
